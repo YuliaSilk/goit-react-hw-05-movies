@@ -1,5 +1,9 @@
-@import-normalize; /* bring in normalize.css styles */
+import { createGlobalStyle } from 'styled-components';
+import 'modern-normalize';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
+export const GlobalStyles = createGlobalStyle`
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,3 +17,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+`
+export const Link = styled(NavLink)`
+ margin-right: 5px;
+   text-decoration: none;
+   &.active {
+     color: red;
+  }
+`
+
