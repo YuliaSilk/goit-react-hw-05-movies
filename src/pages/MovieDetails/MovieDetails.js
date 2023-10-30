@@ -17,18 +17,18 @@ useEffect(() => {
     async function getMovieDetails() {
         try {
             setLoading(true);
-            const fetchMovieDetails = await getMovieById(params.movieId);
+            const fetchMovieDetails = await getMovieById(params.moviedId);
             setMovie(fetchMovieDetails);
         } catch (error) {
             setError(true);
         }
     }
     getMovieDetails();
-}, [params.movieId])
+}, [params.moviedId])
 
     return (
         <div>
-           <Link to={location?.state?.from ?? '/'}/>
+           <Link backLink={backLink}/>
            {loading && (
             <InfinitySpin 
             width='200'

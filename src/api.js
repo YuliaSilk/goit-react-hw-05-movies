@@ -14,8 +14,8 @@ export const getTrending = async () => {
     return response.data;
 }
 
-export const getMovieById = async moviedId => {
-    const response = await axios.get(`movied/${moviedId}?api_key=${API_KEY}`);
+export const getMovieById = async movieId => {
+    const response = await axios.get(`movie/${movieId}?api_key=${API_KEY}`);
     return response.data;
 }
 
@@ -24,18 +24,18 @@ const response = await axios.get(`search/movie?query=${query}&api_key=${API_KEY}
 return response.data;
 }
 
-export const getDetailsId = async moviedId => {
-    const response = await axios.get(`movie/${moviedId}/details?api_key=${API_KEY}`);
+export const getDetailsId = async movieId => {
+    const response = await axios.get(`movie/${movieId}/details?api_key=${API_KEY}`);
     return response.data;
 }
 
-export const getCastId = async moviedId => {
-    const response = await axios.get(`movie/${moviedId}/credits?api_key=${API_KEY}`);
+export const getCastId = async movieId => {
+    const response = await axios.get(`movie/${movieId}/credits?api_key=${API_KEY}`);
     return response.data;
 }
 
-export const getRewiewsId = async moviedId => {
-    const response = await axios.get(`movie/${moviedId}/reviews?api_key=${API_KEY}`);
+export const getRewiewsId = async movieId => {
+    const response = await axios.get(`movie/${movieId}/reviews?api_key=${API_KEY}`);
     return response.data;
 }
 
