@@ -41,7 +41,7 @@ return (
             color="#4fa94d"
           />
         )}
-        {movies.title.lenght === 0 && <p>Sory! Not found.</p>}
+        {movies.lenght === 0 && <p>Sory! Not found.</p>}
         {error && <p>Whoops!</p>}
     </header>
 );

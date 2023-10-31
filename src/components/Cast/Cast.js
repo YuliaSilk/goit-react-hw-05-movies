@@ -27,7 +27,7 @@ export const Cast = () => {
         <ul>
           {castList.map(actor => (
             <li key={actor.id}>
-            <img src={actor.profile_path ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}` : defaultImg}
+            <img src={actor.profile_path ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}` : defaultImg}
             alt='poster' width={200}/>
             <h3>{actor.name}</h3>
             <p>Character: {actor.character}</p>

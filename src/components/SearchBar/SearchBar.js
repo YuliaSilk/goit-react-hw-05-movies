@@ -1,15 +1,14 @@
-import { Form } from "react-router-dom";
 
 export const SearchBar = ({ handleSubmit }) => {
     return (
-        <Form
+        <form
             handleSubmit = { evt => {
                 evt.preverentDefault();
                 handleSubmit(evt.target.elements.search.value);
             }}>
         <input type="text" name="search"/>
         <button type="submit">Search</button>
-        </Form>
+        </form>
     );
 };
 

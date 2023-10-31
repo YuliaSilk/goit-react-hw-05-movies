@@ -1,4 +1,4 @@
-import { getTrending } from "api";
+import { getTrendingAll } from "api";
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { useEffect, useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
@@ -12,7 +12,7 @@ useEffect(() => {
     const trendMovies = async () => {
         try {
             setLoading(true);
-            const trendMovie = await getTrending();
+            const trendMovie = await getTrendingAll();
             setMovies(trendMovie.results);
         } catch (error) {
             setError(true);
