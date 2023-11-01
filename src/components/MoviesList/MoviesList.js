@@ -6,10 +6,10 @@ export const MoviesList = ({ movies }) => {
     return (
         <div>
             <ul>
-                {movies.map(({ id, title, name, release_date }) => (
+                {movies.map(({ id, title, original_title, name }) => (
                     <li key={id}>
                     <Link to={`/movies/${id}`} state={{ from: location }}>
-                      {/* {title ?? name} ({release_date && release_date.split('-') [0]}) */}
+                      {title ?? original_title ?? name} 
                      </Link>
                     </li>
                 ))}
@@ -18,4 +18,6 @@ export const MoviesList = ({ movies }) => {
         </div>
     )
 }
+
+
 

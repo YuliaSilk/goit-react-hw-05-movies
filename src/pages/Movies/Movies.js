@@ -1,9 +1,10 @@
-import { getMovieById } from "api";
-import { MoviesList } from "components/MoviesList/MoviesList";
+import React from "react";
+import { getMovieByQuery } from "api";
 import { SearchBar } from "components/SearchBar/SearchBar";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { InfinitySpin } from 'react-loader-spinner';
+import { MoviesList } from "components/MoviesList/MoviesList";
 
 
 export default function Movies() {
@@ -11,38 +12,59 @@ export default function Movies() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
-    const query = searchParams.get('query');
 
    
 useEffect(() => {
+    const query = searchParams.get('query');
+    if (!query) {
+        return
+    }
+
     const moviesQuery = async () => {
         try {
             setLoading(true);
-            const fetchMovies = await getMovieById(query);
+            const fetchMovies = await getMovieByQuery(query);
             setMovies(fetchMovies.results);
         } catch (error) {
             setError(true)
+        } finally {
+            setLoading(false)
         }
     };
     moviesQuery();
-}, [query]);
+}, [searchParams]);
 
 const handleSubmit= value => {
     setSearchParams({ query: value });
     };
 
 return ( 
-    <header>
+    <div>
         <SearchBar onSubmit={handleSubmit}/>
-        {query && <MoviesList movies={movies}/>}
+        {movies.length > 0 && <MoviesList movies={movies}/>}
+        {movies.map(movie => (
+            <div key={movie.id}>
+                 <Link to={`/movies/${movie.id}`}> 
+                    {movie.title ?? movie.original_title ?? movie.name}
+                </Link>
+            </div>
+        ))}
+       
         {loading && (
             <InfinitySpin 
             width='200'
             color="#4fa94d"
           />
         )}
-        {movies.lenght === 0 && <p>Sory! Not found.</p>}
+        {movies.length === 0 && <p>Please, enter a name</p>}
         {error && <p>Whoops!</p>}
-    </header>
+    </div>
 );
 }
+
+
+// 
+
+
+
+

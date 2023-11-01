@@ -1,4 +1,4 @@
-import { getRewiewsId } from "api";
+import { getMovieReviews } from "api";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 
@@ -11,7 +11,7 @@ export const Reviews = () => {
         async function getMoviesDetails() {
             try {
                 setError(false);
-                const fetchReviews = await getRewiewsId(params.movieId);
+                const fetchReviews = await getMovieReviews(params.movieId);
                 setReviewList(fetchReviews.results);
             } catch (error) {
                 setError(true);

@@ -16,11 +16,13 @@ useEffect(() => {
             setMovies(trendMovie.results);
         } catch (error) {
             setError(true);
+        } finally {
+            setLoading(false);
         }
     }
     trendMovies();
 }, []);
-
+console.log(movies);
 return ( 
     <div>
         <h2>Trending today</h2>

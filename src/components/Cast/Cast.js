@@ -1,4 +1,4 @@
-import { getCastId } from "api";
+import { getMovieCredits } from "api";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 
@@ -7,20 +7,20 @@ export const Cast = () => {
     const [castList, setCastList] = useState([]);
     const [error, setError] = useState(false);
     const params = useParams();
-    const defaultImg = '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>';
+    const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
     useEffect(() => {
-        async function getMovieDetails() {
+        async function getMovieCasts() {
             try {
                 setError(false);
-                const fetchCast = await getCastId(params.moviedId);
+                const fetchCast = await getMovieCredits(params.movieId);
                 setCastList(fetchCast.cast);
             } catch (error) {
                 setError(true);
             }
         }
-        getMovieDetails();
-    }, [params.moviedId]);
+        getMovieCasts();
+    }, [params.movieId]);
 
     return (
         <div>
@@ -39,6 +39,7 @@ export const Cast = () => {
     );
 
 }
+
 
 
 

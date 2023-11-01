@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { InfinitySpin } from 'react-loader-spinner';
-import { getMovieById } from "api";
+import { getDetails } from "api";
 
 
 export default function MovieDetails()  {
@@ -17,14 +17,16 @@ useEffect(() => {
     async function getMovieDetails() {
         try {
             setLoading(true);
-            const fetchMovieDetails = await getMovieById(params.moviedId);
+            const fetchMovieDetails = await getDetails(params.movieId);
             setMovie(fetchMovieDetails);
         } catch (error) {
             setError(true);
+        } finally {
+            setLoading(false);
         }
     }
     getMovieDetails();
-}, [params.moviedId])
+}, [params.movieId])
 
     return (
         <div>
@@ -39,7 +41,7 @@ useEffect(() => {
            {movie.id && (
             <div>
                 <img src={movie.poster_rath ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultImg}
-                    alt='poster' width={400}/>
+                    alt='poster' width={500}/>
                 <h2>{movie.title}</h2>
                 <p>User score: {Math.round(movie.vote_average * 10, 2)}%</p>
                 <h3>Overview</h3>
@@ -53,10 +55,10 @@ useEffect(() => {
                 <p>Additional information</p>
                 <ul>
                     <li>
-                        <Link to='cast'>Cast</Link>
+                        <Link to="cast">Cast</Link>
                     </li>
                     <li>
-                        <Link to='reviews'>Reviews</Link>
+                        <Link to="reviews">Reviews</Link>
                     </li>
                 </ul>
             </div>
