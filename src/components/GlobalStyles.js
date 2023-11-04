@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 export const GlobalStyles = createGlobalStyle`
 body {
@@ -18,11 +16,5 @@ code {
     monospace;
 }
 `
-export const Link = styled(NavLink)`
- margin-right: 5px;
-   text-decoration: none;
-   &.active {
-     color: red;
-  }
-`
+
 

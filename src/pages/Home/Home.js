@@ -2,8 +2,9 @@ import { getTrendingAll } from "api";
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { useEffect, useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
+import { HomeHeader, ContainerHome } from "./Home.styled";
 
-export default function Home() {
+export default function HomePage() {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -24,8 +25,8 @@ useEffect(() => {
 }, []);
 console.log(movies);
 return ( 
-    <div>
-        <h2>Trending today</h2>
+    <ContainerHome>
+        <HomeHeader>Trending today</HomeHeader>
         <MoviesList movies={movies}/>
         {loading && (
             <InfinitySpin 
@@ -34,7 +35,7 @@ return (
           />
         )}
         {error && <p>Whoops! Please reload this page!</p>}
-    </div>
+    </ContainerHome>
 )
 
 }

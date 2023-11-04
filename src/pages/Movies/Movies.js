@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { InfinitySpin } from 'react-loader-spinner';
 import { MoviesList } from "components/MoviesList/MoviesList";
+import { MovieConText } from "./Movies.styled";
 
 
-export default function Movies() {
+export default function MoviesPage() {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -39,7 +40,7 @@ const handleSubmit= value => {
     };
 
 return ( 
-    <div>
+    <MovieConText>
         <SearchBar onSubmit={handleSubmit}/>
         {movies.length > 0 && <MoviesList movies={movies}/>}
         {movies.map(movie => (
@@ -58,12 +59,12 @@ return (
         )}
         {movies.length === 0 && <p>Please, enter a name</p>}
         {error && <p>Whoops!</p>}
-    </div>
+    </MovieConText>
 );
 }
 
 
-// 
+
 
 
 

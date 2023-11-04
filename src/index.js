@@ -8,7 +8,13 @@ import { GlobalStyles } from 'components/GlobalStyles';
 
 const theme = {
   colors: {
-    main: 'red',
+    main: '#021005',
+    header: '#153834',
+    backgraund: '#75bcbd',
+    active:'#820b0b',
+    text:'#232323',
+    input:'#edb234',
+    acent:'#e8fefe',
   },
   spacing: value => `${value*4}px`,
 }

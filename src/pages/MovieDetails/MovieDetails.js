@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import { InfinitySpin } from 'react-loader-spinner';
 import { getDetails } from "api";
+import { About, ToHomebtn, Gernes, LinksInfo, List, MovieContainer, MovieMainContainer, MovieTittle, Poster, SubTittles, TextAbout, LinkToHome } from "./Moviedetails.styled";
+import { IoHomeOutline } from "react-icons/io5";
 
 
 export default function MovieDetails()  {
@@ -11,7 +13,7 @@ export default function MovieDetails()  {
     const location = useLocation();
     const backLink = location.state?.from ?? '/';
     const params = useParams();
-    const defaultImg = '<https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700>';
+    const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 useEffect(() => {
     async function getMovieDetails() {
@@ -29,42 +31,51 @@ useEffect(() => {
 }, [params.movieId])
 
     return (
-        <div>
-           <Link backLink={backLink}/>
+        <MovieMainContainer>
+            <ToHomebtn>
+           <LinkToHome to={backLink}>
+           <IoHomeOutline  />
+           </LinkToHome>
+           </ToHomebtn>
            {loading && (
             <InfinitySpin 
-            width='200'
+            width={200}
             color="#4fa94d"
           />
            )}
            {error && <p>Whoops!</p>}
            {movie.id && (
-            <div>
-                <img src={movie.poster_rath ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultImg}
-                    alt='poster' width={500}/>
-                <h2>{movie.title}</h2>
-                <p>User score: {Math.round(movie.vote_average * 10, 2)}%</p>
-                <h3>Overview</h3>
-                {movie.overview}
-                <h3>Genres</h3>
-                <ul>
+            <MovieContainer>
+                <Poster src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : defaultImg}
+                    alt='poster' width={400}/>
+            <About>
+                <MovieTittle>{movie.title}</MovieTittle>
+                <TextAbout>User score: {Math.round(movie.vote_average * 10)}%</TextAbout>
+                <SubTittles>Overview</SubTittles>
+                <TextAbout>{movie.overview}</TextAbout>
+                <SubTittles>Genres</SubTittles>
+                <Gernes>
                     {movie.genres.map(genre => (
                         <li key={genre.id}>{genre.name}</li>
                     ))}
-                </ul>
-                <p>Additional information</p>
-                <ul>
+                </Gernes>
+             
+            <div>
+                <SubTittles>Additional information</SubTittles>
+                <List>
                     <li>
-                        <Link to="cast">Cast</Link>
+                        <LinksInfo to="cast">Cast</LinksInfo>
                     </li>
                     <li>
-                        <Link to="reviews">Reviews</Link>
+                        <LinksInfo to="reviews">Reviews</LinksInfo>
                     </li>
-                </ul>
+                </List>
             </div>
+            </About>
+            </MovieContainer>
            )}
            <Outlet/>
-        </div>
+        </MovieMainContainer>
     );
 };
  

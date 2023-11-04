@@ -1,5 +1,8 @@
-import { ErrorMessage, Form, Formik, Field } from 'formik';
+import { Formik} from 'formik';
 import * as Yup from 'yup';
+import { IoSearchCircleSharp } from "react-icons/io5";
+import {  ErrMsg, SearchBtn, SearchForm, SearchInput } from "./SearchBar.styled";
+import { Toaster } from 'react-hot-toast';
 
 const searchSchema = Yup.object().shape({
     query: Yup.string().trim().lowercase().required('This field is required'),
@@ -7,6 +10,7 @@ const searchSchema = Yup.object().shape({
 
 export const SearchBar = ({ onSubmit }) => {
     return (
+       
         <Formik
             initialValues={{
                 query: '',
@@ -17,22 +21,25 @@ export const SearchBar = ({ onSubmit }) => {
                 actions.resetForm();
             }}
         >
-            <Form>
+            <SearchForm>
                 <label>
-                    <Field
+                    <SearchInput
                         name="query"
                         type="text"
                         autoComplete="off"
                         autoFocus
                         placeholder="Search interesting film"
                     />
-                    <ErrorMessage component="div" name="query" />
+                    <ErrMsg component="div" name="query" />
                 </label>
 
-                <button type="submit">Search</button>
-                {/* {if query === title ?? query === } */}
-            </Form>
+                <SearchBtn type="submit">
+                <IoSearchCircleSharp />
+                </SearchBtn>
+                <Toaster/>
+            </SearchForm>
         </Formik>
+      
     );
 };
    // <form

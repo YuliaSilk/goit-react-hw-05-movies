@@ -1,7 +1,7 @@
 import { getMovieCredits } from "api";
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
-
+import { CastImg, CastItem, CastList, CastName, CastText, ContainerCasts, Tittle } from "./Cast.styled";
 
 export const Cast = () => {
     const [castList, setCastList] = useState([]);
@@ -23,19 +23,22 @@ export const Cast = () => {
     }, [params.movieId]);
 
     return (
-        <div>
-        <ul>
+        <ContainerCasts>
+                    <Tittle>Casts</Tittle>
+        <CastList>
+    
           {castList.map(actor => (
-            <li key={actor.id}>
-            <img src={actor.profile_path ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}` : defaultImg}
+            <CastItem key={actor.id}>
+            <CastImg src={actor.profile_path ? `https://image.tmdb.org/t/p/w200/${actor.profile_path}` : defaultImg}
             alt='poster' width={200}/>
-            <h3>{actor.name}</h3>
-            <p>Character: {actor.character}</p>
-            </li>
+            <CastName>{actor.name}</CastName>
+            <CastText>Character: {actor.character}</CastText>
+            </CastItem>
           ))} 
-        </ul>
+        </CastList>
         {error && <p>"Whooops! Please reload this page!"</p>}
-        </div>
+        {/* <Toaster/> */}
+        </ContainerCasts>
     );
 
 }
