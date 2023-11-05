@@ -15,10 +15,7 @@ export const SearchBar = () => {
         setSearchParams(searchParams.toString());
     }
 
-    // const handleSubmit = (values) => {
-    //     searchParams.set('query', values.query);
-    //     setSearchParams(searchParams.toString());
-    // };
+
 
     const reset = () => {
         setSearchParams({ query: ""});
@@ -33,7 +30,7 @@ export const SearchBar = () => {
        
         <Formik
             initialValues={{
-                query: query,
+                query: '',
             }}
             validationSchema={searchSchema}
             // value={query}
@@ -42,16 +39,6 @@ export const SearchBar = () => {
                 actions.resetForm();
             }}
         >
-{/* <Formik
-    initialValues={{
-        query: query, // Set the initial value from your query variable
-    }}
-    validationSchema={searchSchema}
-    onSubmit={(values, actions) => {
-        handleSubmit(values.query);
-        actions.resetForm();
-    }}
-></Formik> */}
 
 
             <SearchForm>
