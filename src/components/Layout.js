@@ -1,4 +1,4 @@
-// import { Suspense } from "react"
+import { Suspense } from "react"
 import { NavLink, Outlet } from "react-router-dom"
 import styled from "styled-components"
 import  { Toaster } from 'react-hot-toast';
@@ -52,8 +52,10 @@ export const Layout = () => {
              </nav>
             </HeaderStyle>
             
+            <Suspense fallback={"Loading... Please wait..."}>
             <Outlet />
-      
+            </Suspense>
+
             <Toaster/>
         </Container>
     )

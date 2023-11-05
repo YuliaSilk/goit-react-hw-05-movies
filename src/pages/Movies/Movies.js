@@ -41,7 +41,7 @@ const handleSubmit= value => {
 
 return ( 
     <MovieConText>
-        <SearchBar onSubmit={handleSubmit}/>
+        <SearchBar onSubmit={handleSubmit} setSearchParams={setSearchParams}/>
         {movies.length > 0 && <MoviesList movies={movies}/>}
         {movies.map(movie => (
             <div key={movie.id}>

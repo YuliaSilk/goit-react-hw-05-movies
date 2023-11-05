@@ -11,7 +11,7 @@ const theme = {
     main: '#021005',
     header: '#153834',
     backgraund: '#75bcbd',
-    active:'#820b0b',
+    active:'#c70e38',
     text:'#232323',
     input:'#edb234',
     acent:'#e8fefe',

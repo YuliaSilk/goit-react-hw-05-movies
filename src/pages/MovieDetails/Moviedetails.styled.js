@@ -8,13 +8,14 @@ gap: ${p => p.theme.spacing(6)};
 `;
 
 export const ToHomebtn = styled.button`
+position: relative;
 width: 38px;
-height: auto;
+height: 38px;
 padding: ${p => p.theme.spacing(1)};
 background: transparent;
 border-color: transparent;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-border-radius: 15px;
+border-radius: 50%;
 color: ${({ theme }) => theme.colors.backgraund};
 transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -27,9 +28,13 @@ transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const LinkToHome = styled(NavLink)`
+position: absolute;
+top: 10%;
+right: 2px;
 color: ${({ theme }) => theme.colors.header};
 transition: color 250ms;
 font-size: 30px;
+
 margin: 0 auto;
 
 
