@@ -17,7 +17,7 @@ export const SearchInput = styled(Field)`
 display: inline-block;
 width: 400px;
 height: 32px;
-/* margin: 0 auto; */
+ margin-left: 14px; 
 /* margin-left: 8px; */
 font: inherit;
 font-size: 20px;

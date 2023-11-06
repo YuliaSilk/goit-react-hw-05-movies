@@ -37,11 +37,12 @@ useEffect(() => {
 
 const handleSubmit= value => {
     setSearchParams({ query: value });
-    };
+   
+};
 
 return ( 
     <MovieConText>
-        <SearchBar onSubmit={handleSubmit} setSearchParams={setSearchParams}/>
+        <SearchBar onSubmit={handleSubmit} />
         {movies.length > 0 && <MoviesList movies={movies}/>}
         {movies.map(movie => (
             <div key={movie.id}>

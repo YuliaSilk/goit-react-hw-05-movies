@@ -1,25 +1,24 @@
-import { useSearchParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 import { Formik} from 'formik';
 import * as Yup from 'yup';
 import { IoSearchCircleSharp } from "react-icons/io5";
-import {  ErrMsg, Resetbtn, SearchBtn, SearchForm, SearchInput } from "./SearchBar.styled";
+import {  ErrMsg, SearchBtn, SearchForm, SearchInput } from "./SearchBar.styled";
 import { Toaster } from 'react-hot-toast';
-import { IoTrashOutline } from "react-icons/io5";
+// import { IoTrashOutline } from "react-icons/io5";
 
-export const SearchBar = () => {
+export const SearchBar = ({ onSubmit }) => {
 
-    const[searchParams, setSearchParams] = useSearchParams();
-    const query = searchParams.get("query") ?? "";
-    const handleSubmit = (values) => {
-        searchParams.set('query', values.query);
-        setSearchParams(searchParams.toString());
+    // const[searchParams, setSearchParams] = useSearchParams();
+    // const query = searchParams.get("query") ?? "";
+    
+    const handleSubmit = (value) => {
+        // searchParams.set('query', value.query);
+       onSubmit(value);
     }
 
-
-
-    const reset = () => {
-        setSearchParams({ query: ""});
-    };
+    // const reset = () => {
+    //     setSearchParams({ query: ""});
+    // };
     
 
     const searchSchema = Yup.object().shape({
@@ -57,9 +56,9 @@ export const SearchBar = () => {
                 <IoSearchCircleSharp />
                 </SearchBtn>
                 <Toaster/>
-                <Resetbtn onClick={reset}>
+                {/* <Resetbtn onClick={reset}>
                 <IoTrashOutline/>
-                </Resetbtn>
+                </Resetbtn> */}
             </SearchForm>
         </Formik>
       
@@ -67,23 +66,3 @@ export const SearchBar = () => {
 
 }
 
-
-
-
-
-
-
-// export const SearchBar = ({ onSubmit }) => {
-   
-// };
-   // <form
-        //     onSubmit = { evt => {
-        //         evt.preventDefault();
-        //         onSubmit(evt.target.elements.search.value);
-        //     }}>
-        // <input type="text" name="search"/>
-        // <button type="submit">Search</button>
-        // </form>
-// const handleSubmit= value => {
-//     setSearchParams({ query: value });
-//     };
