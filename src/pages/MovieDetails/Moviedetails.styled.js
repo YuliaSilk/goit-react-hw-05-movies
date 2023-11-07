@@ -7,7 +7,7 @@ flex-direction: column;
 gap: ${p => p.theme.spacing(6)};
 `;
 
-export const ToHomebtn = styled.button`
+export const GoBackBtn = styled.button`
 position: relative;
 width: 38px;
 height: 38px;
@@ -27,7 +27,7 @@ transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 `;
 
-export const LinkToHome = styled(NavLink)`
+export const LinkGoBack = styled(NavLink)`
 position: absolute;
 top: 10%;
 right: 2px;
