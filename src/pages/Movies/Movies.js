@@ -2,7 +2,7 @@ import React from "react";
 import { getMovieByQuery } from "api";
 import { SearchBar } from "components/SearchBar/SearchBar";
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 import { InfinitySpin } from 'react-loader-spinner';
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { MovieConText } from "./Movies.styled";
@@ -44,14 +44,7 @@ return (
     <MovieConText>
         <SearchBar onSubmit={handleSubmit} />
         {movies.length > 0 && <MoviesList movies={movies}/>}
-        {movies.map(movie => (
-            <div key={movie.id}>
-                 <Link to={`/movies/${movie.id}`}> 
-                    {movie.title ?? movie.original_title ?? movie.name}
-                </Link>
-            </div>
-        ))}
-       
+          
         {loading && (
             <InfinitySpin 
             width='200'
