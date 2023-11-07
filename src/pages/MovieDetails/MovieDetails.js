@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useParams } from "react-router-dom";
 import { InfinitySpin } from 'react-loader-spinner';
 import { getDetails } from "api";
-import { About, ToHomebtn, Gernes, LinksInfo, List, MovieContainer, MovieMainContainer, MovieTittle, Poster, SubTittles, TextAbout, LinkToHome } from "./Moviedetails.styled";
-import { IoHomeOutline } from "react-icons/io5";
+import { About, GoBackBtn, Gernes, LinksInfo, List, MovieContainer, MovieMainContainer, MovieTittle, Poster, SubTittles, TextAbout, LinkGoBack } from "./Moviedetails.styled";
+import { IoArrowBack } from "react-icons/io5";
 
 
 export default function MovieDetails()  {
@@ -11,7 +11,7 @@ export default function MovieDetails()  {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const location = useLocation();
-    const backLink = location.state?.from ?? '/';
+    const backLink = useRef(location.state?.from ?? 'movies')
     const params = useParams();
     const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
@@ -32,11 +32,11 @@ useEffect(() => {
 
     return (
         <MovieMainContainer>
-            <ToHomebtn>
-           <LinkToHome to={backLink}>
-           <IoHomeOutline  />
-           </LinkToHome>
-           </ToHomebtn>
+            <GoBackBtn>
+           <LinkGoBack to={backLink.current} >
+           <IoArrowBack  />
+           </LinkGoBack>
+           </GoBackBtn>
            {loading && (
             <InfinitySpin 
             width={200}
